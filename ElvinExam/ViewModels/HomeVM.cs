@@ -4,8 +4,8 @@ namespace ElvinExam.ViewModels
 {
     public class HomeVM
     {
-        List<Subjects> Subjects { get; set; }
-        List<Paids> Paids { get; set; }
-        List<Months> Months { get; set; }
+        public List<Subjects> Subjects { get; set; }
+        public List<Paids> Paids { get; set; }
+        public List<Months> Months { get; set; }
     }
 }
