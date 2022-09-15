@@ -35,7 +35,7 @@ namespace ElvinExam.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Months");
+                    b.ToTable("Months", (string)null);
                 });
 
             modelBuilder.Entity("ElvinExam.Models.Paids", b =>
@@ -56,7 +56,7 @@ namespace ElvinExam.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Paids");
+                    b.ToTable("Paids", (string)null);
                 });
 
             modelBuilder.Entity("ElvinExam.Models.Setting", b =>
@@ -77,7 +77,7 @@ namespace ElvinExam.Migrations
 
                     b.HasIndex("SubjectId");
 
-                    b.ToTable("Settings");
+                    b.ToTable("Settings", (string)null);
                 });
 
             modelBuilder.Entity("ElvinExam.Models.Subjects", b =>
@@ -94,7 +94,7 @@ namespace ElvinExam.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subjects");
+                    b.ToTable("Subjects", (string)null);
                 });
 
             modelBuilder.Entity("ElvinExam.Models.Paids", b =>

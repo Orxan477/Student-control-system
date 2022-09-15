@@ -1,49 +1,64 @@
-﻿
+﻿@using ElvinExam.ViewModels
+@model HomeVM
 @{
     ViewData["Title"] = "Index";
+    int i = 1;
+    int num = 0;
+    int sum = 0;
+    int allSum = 0;
 }
 
 <main>
-        <div class="container">
-            <div class="row">
+    <div class="container">
+        <div class="row">
             <div class="col-lg-12 col-md-6 col-sm-12">
                 <table class="table">
                     <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Subject</th>
-                        <th scope="col">Avqust</th>
-                        <th scope="col">Sentyabr</th>
-                        <th scope="col">Oktyabr</th>
-                        <th scope="col">Noyabr</th>
-                        <th scope="col">Dekabr</th>
-                        <th scope="col">Yanvar</th>
-                        <th scope="col">Fevral</th>
-                        <th scope="col">Mart</th>
-                        <th scope="col">Aprel</th>
-                        <th scope="col">May</th>
-                        <th scope="col">Iyun</th>
-                        <th scope="col">Iyul</th>
-                        <th scope="col">Total</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Subject</th>
+                            @foreach (var month in @Model.Months)
+                            {
+                                <th scope="col">@month.Name</th>
+                            }
+                            <th scope="col">Total</th>
+                        </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Az dili</td>
-                        <td>50</td>
-                        <td>50</td>
-                        <td colspan="10">50</td>
-                        <td class="full">150 AZN</td>
-                      </tr>
-                      <tr>
-                        <th scope="row" colspan="14">1</th>
-                        <td class="full">150 AZN</td>
-                      </tr>
+                        @foreach (var subject in @Model.Subjects)
+                        {
+                            num = 0;
+                            sum = 0;
+                            <tr>
+                                <th scope="row">@i</th>
+                                <td>@subject.Name</td>
+                                @foreach (var paid in subject.Paids)
+                                {
+                                    <td>@paid.Price</td>
+                                    num++;
+                                    sum = sum + paid.Price;
+                                }
+                                @{
+                                    int colNum = 12 - @num;
+                                }
+                                @if (colNum != 0)
+                                {
+                                    <td colspan="@colNum" style="visibility:hidden;">@num</td>
+                                }
+                                <td class="full">@sum AZN</td>
+                                @{
+                                    allSum = allSum + sum;
+                                }
+                            </tr>
+                            i++;
+                        }
+                        <tr>
+                            <th scope="row" colspan="14">@i</th>
+                            <td class="full">@allSum AZN</td>
+                        </tr>
                     </tbody>
-                  </table>
-            </div>
+                </table>
             </div>
         </div>
-    </main>
-
+    </div>
+</main>
