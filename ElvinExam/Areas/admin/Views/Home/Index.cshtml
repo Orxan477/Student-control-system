@@ -1,9 +1,42 @@
-﻿
+﻿@using ElvinExam.ViewModels
+@model HomeVM
 @{
     ViewData["Title"] = "Index";
 }
 
 <div class="main-panel">
-    <h1>Index</h1>
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Subject</th>
+                                        <th>Paid</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var subject in @Model.Subjects)
+                                    {
+                                        <tr>
+                                            <td>1</td>
+                                            <td>@subject.Name</td>
+                                            <td>50 AZN</td>
+                                            <td><button>Paid</button></td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
