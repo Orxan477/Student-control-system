@@ -263,3 +263,4 @@ E:\ElvinExam\ElvinExam\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 E:\ElvinExam\ElvinExam\bin\Debug\net6.0\Microsoft.Build.dll
 E:\ElvinExam\ElvinExam\bin\Debug\net6.0\Microsoft.Build.Framework.dll
 E:\ElvinExam\ElvinExam\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
+E:\ElvinExam\ElvinExam\obj\Debug\net6.0\scopedcss\Areas\admin\Views\Shared\_AdminLayout.cshtml.rz.scp.css
