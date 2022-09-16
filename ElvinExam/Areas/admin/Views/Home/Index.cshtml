@@ -2,6 +2,7 @@
 @model HomeVM
 @{
     ViewData["Title"] = "Index";
+    int num = 1;
 }
 
 <div class="main-panel">
@@ -24,11 +25,17 @@
                                     @foreach (var subject in @Model.Subjects)
                                     {
                                         <tr>
-                                            <td>1</td>
+                                            <td>@num</td>
                                             <td>@subject.Name</td>
-                                            <td>50 AZN</td>
-                                            <td><button>Paid</button></td>
+                                           @foreach (var setting in subject.Settings)
+                                           {
+                                                <td>@setting.Price AZN</td>
+                                           }
+                                            <td>
+                                                    <a asp-action="CreatePaid" asp-route-id="@subject.Id" class="btn btn-primary" >Paid</a>
+                                            </td>
                                         </tr>
+                                        num++;
                                     }
                                 </tbody>
                             </table>

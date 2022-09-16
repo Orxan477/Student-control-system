@@ -23,5 +23,9 @@ namespace ElvinExam.Areas.admin.Controllers
             };
             return View(model);
         }
+        public IActionResult CreatePaid(int id)
+        {
+            return Json(id);
+        }
     }
 }
