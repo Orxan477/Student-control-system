@@ -6,6 +6,8 @@
     int num = 0;
     int sum = 0;
     int allSum = 0;
+    int f = 0;
+    int k = 0;
 }
 
 <main>
@@ -32,21 +34,31 @@
                             <tr>
                                 <th scope="row">@i</th>
                                 <td>@subject.Name</td>
-                                @if (subject.Paids is null)
+                                @if (subject is null)
                                 {
                                     <td>0</td>
                                     num++;
                                 }
-                                else
+                                @if (f != 1 && subject.Name == "Fizika")
                                 {
-
-                                    @foreach (var paid in subject.Paids)
-                                    {
-                                        <td>@paid.Price</td>
-                                        num++;
-                                        sum = sum + paid.Price;
-                                    }
+                                    <td>0</td>
+                                    num++;
+                                    f++;
                                 }
+                                @if (k != 1 && subject.Name == "Kimya")
+                                {
+                                    <td>0</td>
+                                    num++;
+                                    k++;
+                                }
+
+                                @foreach (var paid in subject.Paids)
+                                {
+                                    <td>@paid.Price</td>
+                                    num++;
+                                    sum = sum + paid.Price;
+                                }
+                                @*}*@
                                 @{
                                     int colNum = 12 - @num;
                                 }
