@@ -23,6 +23,7 @@ namespace ElvinExam.Areas.admin.Controllers
             };
             return View(model);
         }
+        [Route("/Paid/CreatePaid/{id}")]
         public IActionResult CreatePaid(int id)
         {
             return Json(id);

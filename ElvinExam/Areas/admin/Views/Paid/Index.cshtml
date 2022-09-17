@@ -27,12 +27,12 @@
                                         <tr>
                                             <td>@num</td>
                                             <td>@subject.Name</td>
-                                           @foreach (var setting in subject.Settings)
-                                           {
+                                            @foreach (var setting in subject.Settings)
+                                            {
                                                 <td>@setting.Price AZN</td>
-                                           }
+                                            }
                                             <td>
-                                                    <a asp-action="CreatePaid" asp-route-id="@subject.Id" class="btn btn-primary">Paid</a>
+                                                <a asp-controller="Paid" asp-action="CreatePaid" asp-route-id="@subject.Id" class="btn btn-primary">Paid</a>
                                             </td>
                                         </tr>
                                         num++;
