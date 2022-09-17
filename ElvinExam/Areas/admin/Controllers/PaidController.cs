@@ -1,4 +1,5 @@
 ﻿using ElvinExam.DAL;
+using ElvinExam.Models;
 using ElvinExam.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace ElvinExam.Areas.admin.Controllers
         {
             _context = context;
         }
+        [Route("/admin")]
         public async Task<IActionResult> Index()
         {
             HomeVM model = new HomeVM()
@@ -23,10 +25,18 @@ namespace ElvinExam.Areas.admin.Controllers
             };
             return View(model);
         }
-        [Route("/Paid/CreatePaid/{id}")]
-        public IActionResult CreatePaid(int id)
+        [Route("/CreatePaid/{id}")]
+        public async Task<IActionResult> CreatePaid(int id)
         {
-            return Json(id);
+            var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
+            Paids newPaid = new Paids()
+            {
+                SubjectId = id,
+                Price = subject.Price
+            };
+            await _context.Paids.AddAsync(newPaid);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }
