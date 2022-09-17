@@ -19,12 +19,7 @@ namespace ElvinExam.Controllers
             {
                 Months = await _context.Months.ToListAsync(),
                 Subjects = await _context.Subjects.ToListAsync(),
-                //Paids = await _context.Paids.Include(x=>x.Subject).ToListAsync(),
-                //AzərbaycanDili=await _context.Paids.Where(x=>x.SubjectId==1).ToListAsync(),
                 Paids=await _context.Paids.ToListAsync(),
-                //İngilisDili=await _context.Paids.Where(x=>x.SubjectId==3).ToListAsync(),
-                //Fizika=await _context.Paids.Where(x=>x.SubjectId==4).ToListAsync(),
-                //Kimya=await _context.Paids.Where(x=>x.SubjectId==5).ToListAsync(),
             };
             return View(model);
         }
