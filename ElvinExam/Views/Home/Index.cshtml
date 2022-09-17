@@ -34,31 +34,36 @@
                             <tr>
                                 <th scope="row">@i</th>
                                 <td>@subject.Name</td>
-                                @if (subject is null)
-                                {
-                                    <td>0</td>
-                                    num++;
-                                }
-                                @if (f != 1 && subject.Name == "Fizika")
-                                {
-                                    <td>0</td>
-                                    num++;
-                                    f++;
-                                }
-                                @if (k != 1 && subject.Name == "Kimya")
-                                {
-                                    <td>0</td>
-                                    num++;
-                                    k++;
-                                }
 
-                                @foreach (var paid in subject.Paids)
+                                @if (subject.Paids != null)
                                 {
-                                    <td>@paid.Price</td>
-                                    num++;
-                                    sum = sum + paid.Price;
+                                    @if (f != 1 && subject.Name == "Fizika")
+                                    {
+                                        <td>0</td>
+                                        num++;
+                                        f++;
+                                    }
+                                    @if (k != 1 && subject.Name == "Kimya")
+                                    {
+                                        <td>0</td>
+                                        num++;
+                                        k++;
+                                    }
                                 }
-                                @*}*@
+                                @if (subject.Paids is null)
+                                {
+                                    <td>0</td>
+                                    num++;
+                                }
+                                else
+                                {
+                                    @foreach (var paid in subject.Paids)
+                                    {
+                                        <td>@paid.Price</td>
+                                        num++;
+                                        sum = sum + paid.Price;
+                                    }
+                                }
                                 @{
                                     int colNum = 12 - @num;
                                 }
