@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 namespace ElvinExam.Areas.admin.Controllers
 {
     [Area("Admin")]
-    public class HomeController : Controller
+    public class PaidController : Controller
     {
         private AppDbContext _context;
 
-        public HomeController(AppDbContext context)
+        public PaidController(AppDbContext context)
         {
             _context = context;
         }
