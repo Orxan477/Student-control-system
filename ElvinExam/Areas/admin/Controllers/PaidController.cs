@@ -29,6 +29,7 @@ namespace ElvinExam.Areas.admin.Controllers
         public async Task<IActionResult> CreatePaid(int id)
         {
             var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
+            if (subject is null) return NotFound();
             Paids newPaid = new Paids()
             {
                 SubjectId = id,
