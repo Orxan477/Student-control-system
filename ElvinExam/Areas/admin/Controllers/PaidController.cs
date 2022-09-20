@@ -39,5 +39,12 @@ namespace ElvinExam.Areas.admin.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+        [Route("/UpdatePaid/{id}")]
+        public async Task<IActionResult> UpdatePaid(int id)
+        {
+            var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
+            if (subject is null) return NotFound();
+            return Json(subject);
+        }
     }
 }
