@@ -1,0 +1,28 @@
+﻿@using ElvinExam.ViewModels.Price
+@model PriceVM
+@{
+    ViewData["Title"] = "UpdatePaid";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <form class="forms-sample d-inline" method="post">
+                            <div class="form-group">
+                                <label asp-for="PriceN"></label>
+                                <input asp-for="PriceN" class="form-control">
+                                <span class="text-danger" asp-validation-for="PriceN"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                        </form>
+                        <a class="btn btn-light" asp-action="Index">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

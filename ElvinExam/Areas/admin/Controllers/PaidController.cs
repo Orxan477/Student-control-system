@@ -1,6 +1,7 @@
 ﻿using ElvinExam.DAL;
 using ElvinExam.Models;
 using ElvinExam.ViewModels;
+using ElvinExam.ViewModels.Price;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,7 +45,25 @@ namespace ElvinExam.Areas.admin.Controllers
         {
             var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
             if (subject is null) return NotFound();
-            return Json(subject);
+            PriceVM price = new PriceVM()
+            {
+                Id=id,
+                PriceN = subject.Price,
+            };
+            return View(price);
+        }
+        [Route("/UpdatePaid/{id}")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdatePaid(int id,PriceVM price)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+            var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
+            if (subject is null) return NotFound();
+            subject.Price = price.PriceN;
+            //return Json(subject);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }
