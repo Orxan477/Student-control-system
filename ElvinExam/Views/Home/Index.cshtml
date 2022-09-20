@@ -6,8 +6,6 @@
     int num = 0;
     int sum = 0;
     int allSum = 0;
-    int f = 0;
-    int k = 0;
 }
 
 <main>
@@ -34,22 +32,6 @@
                             <tr>
                                 <th scope="row">@i</th>
                                 <td>@subject.Name</td>
-
-                                @if (subject.Paids != null)
-                                {
-                                    @if (f != 1 && subject.Name == "Fizika")
-                                    {
-                                        <td>0</td>
-                                        num++;
-                                        f++;
-                                    }
-                                    @if (k != 1 && subject.Name == "Kimya")
-                                    {
-                                        <td>0</td>
-                                        num++;
-                                        k++;
-                                    }
-                                }
                                 @if (subject.Paids is null)
                                 {
                                     <td>0</td>
