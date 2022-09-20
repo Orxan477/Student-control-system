@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "F2LtC3b0U1SNYh485un0O69ajQbn8wKssigg1wDrC631AmW0FSNe/fqzoID94OPQy8Aw2ubQMAsNLOIZ60+4Ig==",
+  "dgSpecHash": "Vb/gAvHdirt42TpJ9yn08589AT29Sn0qIzQXQ79DT8umqblgjthcyqiBs4IKLeESDv5be4UzNnhJDFSIRHIu4g==",
   "success": true,
-  "projectFilePath": "E:\\ElvinExam\\ElvinExam\\ElvinExam.csproj",
+  "projectFilePath": "E:\\Documents\\Code Academy\\Projects\\ElvinExam\\ElvinExam\\ElvinExam.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Orxan477\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Orxan477\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
