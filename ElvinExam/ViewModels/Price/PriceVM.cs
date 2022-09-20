@@ -3,6 +3,6 @@
     public class PriceVM
     {
         public int Id { get; set; }
-        public int PriceN { get; set; }
+        public int NewPrice { get; set; }
     }
 }

@@ -48,7 +48,7 @@ namespace ElvinExam.Areas.admin.Controllers
             PriceVM price = new PriceVM()
             {
                 Id=id,
-                PriceN = subject.Price,
+                NewPrice = subject.Price,
             };
             return View(price);
         }
@@ -60,7 +60,7 @@ namespace ElvinExam.Areas.admin.Controllers
             if (!ModelState.IsValid) return BadRequest();
             var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
             if (subject is null) return NotFound();
-            subject.Price = price.PriceN;
+            subject.Price = price.NewPrice;
             //return Json(subject);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
