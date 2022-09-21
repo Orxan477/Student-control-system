@@ -1,5 +1,5 @@
-﻿using ElvinExam.DAL;
-using ElvinExam.ViewModels;
+﻿using ControlSystem.Business.ViewModels;
+using ControlSystem.Data.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,7 +1,7 @@
-﻿using ElvinExam.DAL;
-using ElvinExam.Models;
-using ElvinExam.ViewModels;
-using ElvinExam.ViewModels.Price;
+﻿using ControlSystem.Business.ViewModels;
+using ControlSystem.Business.ViewModels.Price;
+using ControlSystem.Core.Models;
+using ControlSystem.Data.DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

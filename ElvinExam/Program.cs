@@ -1,4 +1,4 @@
-using ElvinExam.DAL;
+using ControlSystem.Data.DAL;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
