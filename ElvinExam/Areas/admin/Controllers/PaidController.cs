@@ -1,5 +1,6 @@
 ﻿using ControlSystem.Business.ViewModels;
 using ControlSystem.Business.ViewModels.Price;
+using ControlSystem.Core.Interfaces;
 using ControlSystem.Core.Models;
 using ControlSystem.Data.DAL;
 using Microsoft.AspNetCore.Mvc;
@@ -11,18 +12,20 @@ namespace ElvinExam.Areas.admin.Controllers
     public class PaidController : Controller
     {
         private AppDbContext _context;
+        private IUnitOfWork _unitOfWork;
 
-        public PaidController(AppDbContext context)
+        public PaidController(AppDbContext context,IUnitOfWork unitOfWork)
         {
             _context = context;
+            _unitOfWork = unitOfWork;
         }
         [Route("/admin")]
         public async Task<IActionResult> Index()
         {
             HomeVM model = new HomeVM()
             {
-                Subjects=await _context.Subjects.ToListAsync(),
-                Settings=await _context.Settings.ToListAsync(),
+                Subjects=await _unitOfWork.SubjectRepository.GetAll(),
+                Settings=await _unitOfWork.SettingRepository.GetAll(),
             };
             return View(model);
         }
