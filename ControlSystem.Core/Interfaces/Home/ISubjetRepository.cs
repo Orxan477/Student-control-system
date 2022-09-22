@@ -2,7 +2,7 @@
 
 namespace ControlSystem.Core.Interfaces.Home
 {
-    public interface ISubjecttRepository:IGetRepository<Subjects>
+    public interface ISubjectRepository:IGetRepository<Subjects>
     {
     }
 }
