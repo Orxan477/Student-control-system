@@ -3,12 +3,12 @@ using ControlSystem.Data.DAL;
 
 namespace ControlSystem.Data.Implementations
 {
-    public class PaidRepository<TEntity> : IPaidRepository<TEntity>
+    public class PaidUpdateRepository<TEntity> : IPaidUpdateRepository<TEntity>
         where TEntity : class
     {
         private AppDbContext _context;
 
-        public PaidRepository(AppDbContext context)
+        public PaidUpdateRepository(AppDbContext context)
         {
             _context = context;
         }

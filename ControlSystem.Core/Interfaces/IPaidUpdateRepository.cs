@@ -1,6 +1,6 @@
 ﻿namespace ControlSystem.Core.Interfaces
 {
-    public interface IPaidRepository<TEntity>
+    public interface IPaidUpdateRepository<TEntity>
     {
         Task CreatePaid(TEntity entity);
         void UpdatePaid(TEntity entity);
