@@ -1,4 +1,6 @@
+using ControlSystem.Core.Interfaces;
 using ControlSystem.Data.DAL;
+using ControlSystem.Data.Implementations;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,6 +28,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
