@@ -1,6 +1,8 @@
 using ControlSystem.Core.Interfaces;
+using ControlSystem.Core.Interfaces.Home;
 using ControlSystem.Data.DAL;
 using ControlSystem.Data.Implementations;
+using ControlSystem.Data.Implementations.Home;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration["ConnectionStrings:Default"]);
 });
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 
@@ -28,7 +31,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
