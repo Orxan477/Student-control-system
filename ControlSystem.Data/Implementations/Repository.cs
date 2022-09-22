@@ -1,22 +1,31 @@
 ﻿using ControlSystem.Core.Interfaces;
+using ControlSystem.Data.DAL;
+using Microsoft.EntityFrameworkCore;
 
 namespace ControlSystem.Data.Implementations
 {
-    public class Repository<T> : IRepository<T>
-        where T : class
+    public class Repository<TEntity> : IRepository<TEntity>
+        where TEntity : class
     {
-        public Task<T> GetAll()
+        private AppDbContext _context;
+
+        public Repository(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
-        public Task CreatePaid(int id)
+        public async Task<List<TEntity>> GetAll()
         {
-            throw new NotImplementedException();
+            List<TEntity> model=await _context.Set<TEntity>().ToListAsync();
+            return model;
+        }
+        public async Task CreatePaid(TEntity entity)
+        {
+            await _context.Set<TEntity>().AddAsync(entity);
         }
 
-        public Task UpdatePaid(int id)
+        public void UpdatePaid(TEntity entity)
         {
-            throw new NotImplementedException();
+             _context.Set<TEntity>().Update(entity);
         }
     }
 }

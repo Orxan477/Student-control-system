@@ -1,9 +1,9 @@
 ﻿namespace ControlSystem.Core.Interfaces
 {
-    public interface IRepository<T>
+    public interface IRepository<TEntity>
     {
-        Task<T> GetAll();
-        Task CreatePaid(int id);
-        Task UpdatePaid(int id);
+        Task<List<TEntity>> GetAll();
+        Task CreatePaid(TEntity entity);
+        void UpdatePaid(TEntity entity);
     }
 }
