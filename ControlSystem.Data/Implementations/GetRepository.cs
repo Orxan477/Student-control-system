@@ -4,12 +4,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ControlSystem.Data.Implementations
 {
-    public class Repository<TEntity> : IRepository<TEntity>
+    public class GetRepository<TEntity> : IGetRepository<TEntity>
         where TEntity : class
     {
         private AppDbContext _context;
 
-        public Repository(AppDbContext context)
+        public GetRepository(AppDbContext context)
         {
             _context = context;
         }
