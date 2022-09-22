@@ -1,3 +1,5 @@
+using ControlSystem.Business.Implementations;
+using ControlSystem.Business.Interfaces;
 using ControlSystem.Core.Interfaces;
 using ControlSystem.Core.Interfaces.Home;
 using ControlSystem.Data.DAL;
@@ -20,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration["ConnectionStrings:Default"]);
 });
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IPaidService, PaidService>();
 
 var app = builder.Build();
 

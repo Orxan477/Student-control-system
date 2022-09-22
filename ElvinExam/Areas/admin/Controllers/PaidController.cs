@@ -1,10 +1,9 @@
-﻿using ControlSystem.Business.ViewModels;
+﻿using ControlSystem.Business.Interfaces;
+using ControlSystem.Business.ViewModels;
 using ControlSystem.Business.ViewModels.Price;
 using ControlSystem.Core.Interfaces;
-using ControlSystem.Core.Models;
 using ControlSystem.Data.DAL;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ElvinExam.Areas.admin.Controllers
 {
@@ -13,11 +12,13 @@ namespace ElvinExam.Areas.admin.Controllers
     {
         private AppDbContext _context;
         private IUnitOfWork _unitOfWork;
+        private IPaidService _paidService;
 
-        public PaidController(AppDbContext context,IUnitOfWork unitOfWork)
+        public PaidController(AppDbContext context,IUnitOfWork unitOfWork,IPaidService paidService)
         {
             _context = context;
             _unitOfWork = unitOfWork;
+            _paidService = paidService;
         }
         [Route("/admin")]
         public async Task<IActionResult> Index()
@@ -32,27 +33,13 @@ namespace ElvinExam.Areas.admin.Controllers
         [Route("/CreatePaid/{id}")]
         public async Task<IActionResult> CreatePaid(int id)
         {
-            var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
-            if (subject is null) return NotFound();
-            Paids newPaid = new Paids()
-            {
-                SubjectId = id,
-                Price = subject.Price
-            };
-            await _context.Paids.AddAsync(newPaid);
-            await _context.SaveChangesAsync();
+            if (!await _paidService.CreatePaid(id)) return NotFound();
             return RedirectToAction("Index");
         }
         [Route("/UpdatePaid/{id}")]
         public async Task<IActionResult> UpdatePaid(int id)
         {
-            var subject = await _unitOfWork.SettingRepository.Get(x => x.SubjectId == id);
-            if (subject is null) return NotFound();
-            PriceVM price = new PriceVM()
-            {
-                Id=id,
-                NewPrice = subject.Price,
-            };
+            var price = await _paidService.GetPaid(id);
             return View(price);
         }
         [Route("/UpdatePaid/{id}")]
@@ -61,10 +48,7 @@ namespace ElvinExam.Areas.admin.Controllers
         public async Task<IActionResult> UpdatePaid(int id,PriceVM price)
         {
             if (!ModelState.IsValid) return BadRequest();
-            var subject = await _unitOfWork.SettingRepository.Get(x => x.SubjectId == id);
-            if (subject is null) return NotFound();
-            subject.Price = price.NewPrice;
-            await _context.SaveChangesAsync();
+            if (!await _paidService.UpdatePaid(id,price)) return NotFound();
             return RedirectToAction("Index");
         }
     }
