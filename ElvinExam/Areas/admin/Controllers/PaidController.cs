@@ -46,7 +46,7 @@ namespace ElvinExam.Areas.admin.Controllers
         [Route("/UpdatePaid/{id}")]
         public async Task<IActionResult> UpdatePaid(int id)
         {
-            var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
+            var subject = await _unitOfWork.SettingRepository.Get(x => x.SubjectId == id);
             if (subject is null) return NotFound();
             PriceVM price = new PriceVM()
             {
@@ -61,10 +61,9 @@ namespace ElvinExam.Areas.admin.Controllers
         public async Task<IActionResult> UpdatePaid(int id,PriceVM price)
         {
             if (!ModelState.IsValid) return BadRequest();
-            var subject = await _context.Settings.Where(x => x.SubjectId == id).FirstOrDefaultAsync();
+            var subject = await _unitOfWork.SettingRepository.Get(x => x.SubjectId == id);
             if (subject is null) return NotFound();
             subject.Price = price.NewPrice;
-            //return Json(subject);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
