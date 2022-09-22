@@ -14,7 +14,7 @@ namespace ElvinExam.Areas.admin.Controllers
         private IUnitOfWork _unitOfWork;
         private IPaidService _paidService;
 
-        public PaidController(AppDbContext context,IUnitOfWork unitOfWork,IPaidService paidService)
+        public PaidController(AppDbContext context, IUnitOfWork unitOfWork, IPaidService paidService)
         {
             _context = context;
             _unitOfWork = unitOfWork;
@@ -25,8 +25,8 @@ namespace ElvinExam.Areas.admin.Controllers
         {
             HomeVM model = new HomeVM()
             {
-                Subjects=await _unitOfWork.SubjectRepository.GetAll(),
-                Settings=await _unitOfWork.SettingRepository.GetAll(),
+                Subjects = await _unitOfWork.SubjectRepository.GetAll(),
+                Settings = await _unitOfWork.SettingRepository.GetAll(),
             };
             return View(model);
         }
@@ -39,16 +39,25 @@ namespace ElvinExam.Areas.admin.Controllers
         [Route("/UpdatePaid/{id}")]
         public async Task<IActionResult> UpdatePaid(int id)
         {
-            var price = await _paidService.GetPaid(id);
-            return View(price);
+
+            try
+            {
+                var price = await _paidService.GetPaid(id);
+                return View(price);
+            }
+            catch (Exception ex)
+            {
+
+                return Json("NotFound"); 
+            }
         }
         [Route("/UpdatePaid/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdatePaid(int id,PriceVM price)
+        public async Task<IActionResult> UpdatePaid(int id, PriceVM price)
         {
             if (!ModelState.IsValid) return BadRequest();
-            if (!await _paidService.UpdatePaid(id,price)) return NotFound();
+            if (!await _paidService.UpdatePaid(id, price)) return NotFound();
             return RedirectToAction("Index");
         }
     }
