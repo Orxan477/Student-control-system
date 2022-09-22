@@ -9,7 +9,7 @@ namespace ControlSystem.Data.Implementations
     {
         private AppDbContext _context;
         private PaidRepository _paidRepository;
-        //private SettingRepository _settingRepository;
+        private SettingRepository _settingRepository;
         private SubjectRepository _subjectRepository;
         private MonthRepository _monthRepository;
 
@@ -21,7 +21,7 @@ namespace ControlSystem.Data.Implementations
 
         public ISubjectRepository SubjectRepository => _subjectRepository ?? new SubjectRepository(_context);
 
-        //public ISettingRepository SettingRepository => _settingRepository ?? new SettingRepository(_context);
+        public ISettingRepository SettingRepository => _settingRepository ?? new SettingRepository(_context);
 
         public IMonthRepository MonthRepository => _monthRepository ?? new MonthRepository(_context);
 

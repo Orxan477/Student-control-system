@@ -6,7 +6,7 @@ namespace ControlSystem.Core.Interfaces
     {
         public IPaidRepository PaidRepository { get; }
         public ISubjectRepository SubjectRepository { get; }
-        //public ISettingRepository SettingRepository { get; }
+        public ISettingRepository SettingRepository { get; }
         public IMonthRepository MonthRepository { get; }
         Task SaveChangesAsync();
     }
