@@ -6,15 +6,15 @@ namespace ElvinExam.Controllers
 {
     public class HomeController : Controller
     {
-        private IHomeService _homeService;
+        private IExamOfWork _examOfWork;
 
-        public HomeController(IHomeService homeService)
+        public HomeController(IExamOfWork examOfWork)
         {
-            _homeService = homeService;
+            _examOfWork = examOfWork;
         }
         public async Task<IActionResult> Index()
         {
-            HomeVM model = await _homeService.HomeView();
+            HomeVM model = await _examOfWork.HomeService.HomeView();
             return View(model);
         }
     }

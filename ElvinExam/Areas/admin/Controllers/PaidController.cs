@@ -11,25 +11,23 @@ namespace ElvinExam.Areas.admin.Controllers
     public class PaidController : Controller
     {
         private IUnitOfWork _unitOfWork;
-        private IPaidService _paidService;
-        private IHomeService _homeService;
+        private IExamOfWork _examOfWork;
 
-        public PaidController(IUnitOfWork unitOfWork, IPaidService paidService,IHomeService homeService)
+        public PaidController(IUnitOfWork unitOfWork, IExamOfWork examOfWork)
         {
             _unitOfWork = unitOfWork;
-            _paidService = paidService;
-            _homeService = homeService;
+            _examOfWork = examOfWork;
         }
         [Route("/admin")]
         public async Task<IActionResult> Index()
         {
-            HomeVM model = await _homeService.AdminView();
+            HomeVM model = await _examOfWork.HomeService.AdminView();
             return View(model);
         }
         [Route("/CreatePaid/{id}")]
         public async Task<IActionResult> CreatePaid(int id)
         {
-            if (!await _paidService.CreatePaid(id)) return NotFound();
+            if (!await _examOfWork.PaidService.CreatePaid(id)) return NotFound();
             return RedirectToAction("Index");
         }
         [Route("/UpdatePaid/{id}")]
@@ -38,7 +36,7 @@ namespace ElvinExam.Areas.admin.Controllers
 
             try
             {
-                var price = await _paidService.GetPaid(id);
+                var price = await _examOfWork.PaidService.GetPaid(id);
                 return View(price);
             }
             catch (Exception ex)
@@ -53,7 +51,7 @@ namespace ElvinExam.Areas.admin.Controllers
         public async Task<IActionResult> UpdatePaid(int id, PriceVM price)
         {
             if (!ModelState.IsValid) return BadRequest();
-            if (!await _paidService.UpdatePaid(id, price)) return NotFound();
+            if (!await _examOfWork.PaidService.UpdatePaid(id, price)) return NotFound();
             return RedirectToAction("Index");
         }
     }
