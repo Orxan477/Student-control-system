@@ -10,24 +10,20 @@ namespace ElvinExam.Areas.admin.Controllers
     [Area("Admin")]
     public class PaidController : Controller
     {
-        private AppDbContext _context;
         private IUnitOfWork _unitOfWork;
         private IPaidService _paidService;
+        private IHomeService _homeService;
 
-        public PaidController(AppDbContext context, IUnitOfWork unitOfWork, IPaidService paidService)
+        public PaidController(IUnitOfWork unitOfWork, IPaidService paidService,IHomeService homeService)
         {
-            _context = context;
             _unitOfWork = unitOfWork;
             _paidService = paidService;
+            _homeService = homeService;
         }
         [Route("/admin")]
         public async Task<IActionResult> Index()
         {
-            HomeVM model = new HomeVM()
-            {
-                Subjects = await _unitOfWork.SubjectRepository.GetAll(),
-                Settings = await _unitOfWork.SettingRepository.GetAll(),
-            };
+            HomeVM model = await _homeService.AdminView();
             return View(model);
         }
         [Route("/CreatePaid/{id}")]

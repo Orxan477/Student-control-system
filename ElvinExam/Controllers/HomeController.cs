@@ -1,32 +1,20 @@
-﻿using ControlSystem.Business.ViewModels;
-using ControlSystem.Core.Interfaces;
-using ControlSystem.Core.Interfaces.Home;
-using ControlSystem.Data.DAL;
-using ControlSystem.Data.Implementations;
+﻿using ControlSystem.Business.Interfaces;
+using ControlSystem.Business.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace ElvinExam.Controllers
 {
     public class HomeController : Controller
     {
-        //private IMonthRepository _monthRepository;
-        //private ISubjectRepository _subjectRepository;
-        //private IPaidRepository _paidRepository;
-        private IUnitOfWork _unitOfWork;
+        private IHomeService _homeService;
 
-        public HomeController(IUnitOfWork unitOfWork)
+        public HomeController(IHomeService homeService)
         {
-            _unitOfWork = unitOfWork;
+            _homeService = homeService;
         }
         public async Task<IActionResult> Index()
         {
-            HomeVM model = new HomeVM()
-            {
-                Months=await _unitOfWork.MonthRepository.GetAll(),
-                Subjects=await _unitOfWork.SubjectRepository.GetAll(),
-                Paids=await _unitOfWork.PaidRepository.GetAll(),
-            };
+            HomeVM model = await _homeService.HomeView();
             return View(model);
         }
     }
